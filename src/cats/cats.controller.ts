@@ -9,8 +9,7 @@ import {
 } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { CatDto } from './dto/cats.dto';
-import { CreateCatDto, createCatSchema } from './dto/create-cat.dto';
-import { ZodValidationPipe } from '../pipes/zod-validation.pipes';
+import { CreateCatDto } from './dto/create-cat.dto';
 
 @Controller('cats')
 export class CatsController {
@@ -27,7 +26,6 @@ export class CatsController {
   }
 
   @Post()
-  @UsePipes(new ZodValidationPipe(createCatSchema))
   addCat(@Body() cat: CreateCatDto): void {
     return this.catsService.addCat(cat);
   }

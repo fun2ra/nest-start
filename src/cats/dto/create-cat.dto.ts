@@ -1,10 +1,15 @@
-import { z } from 'zod';
+import { IsString, IsInt } from 'class-validator';
 
-export const createCatSchema = z.object({
-  name: z.string(),
-  age: z.number(),
-  breed: z.string(),
-  color: z.string(),
-});
+export class CreateCatDto {
+  @IsString()
+  name: string;
 
-export type CreateCatDto = z.infer<typeof createCatSchema>;
+  @IsInt()
+  age: number;
+
+  @IsString()
+  breed: string;
+
+  @IsString()
+  color: string;
+}
