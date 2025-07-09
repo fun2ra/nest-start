@@ -6,10 +6,12 @@ import {
   Body,
   ParseIntPipe,
   UsePipes,
+  UseInterceptors,
 } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { CatDto } from './dto/cats.dto';
 import { CreateCatDto } from './dto/create-cat.dto';
+import { UserInterceptor } from 'src/interceptors/user.interceptor';
 
 @Controller('cats')
 export class CatsController {
@@ -27,6 +29,7 @@ export class CatsController {
 
   @Post()
   addCat(@Body() cat: CreateCatDto): void {
+    console.log('Adding a new cat:', cat);
     return this.catsService.addCat(cat);
   }
 }
